@@ -1,0 +1,10 @@
+[project]
+name = "002-model-webapp"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "scikit-learn==1.6.1",
+    "streamlit>=1.41.1",
+]
