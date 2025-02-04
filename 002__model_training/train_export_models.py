@@ -15,7 +15,21 @@ df = pl.read_csv("dataset/train.csv")
 
 df = df.drop_nulls()
 
-df =  df.drop("Policy Start Date")
+df =  df.drop(["id", "Policy Start Date", "Credit Score", "Customer Feedback"])
+
+from polars import String
+features_modalities = []
+for feature_name, feature_type in df.schema.items():
+    if isinstance(feature_type, String):
+        modalities = df[feature_name].unique().to_list()
+        features_modalities.append(f"{feature_name} ({feature_type}) : " + ",".join(modalities) + "\n")
+    else:
+        features_modalities.append(f"{feature_name} ({feature_type}) \n")
+
+with open("features_modalities.txt", "w") as f:
+    f.writelines(features_modalities)
+
+
 df = df.to_dummies(cs.string(), separator="_",  drop_first=True)
 
 y = df['Premium Amount']
