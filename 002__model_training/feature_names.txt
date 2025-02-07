@@ -1,0 +1,25 @@
+Age
+Gender_Male
+Annual Income
+Marital Status_Divorced
+Marital Status_Single
+Number of Dependents
+Education Level_High School
+Education Level_Master's
+Education Level_PhD
+Occupation_Employed
+Occupation_Unemployed
+Health Score
+Location_Rural
+Location_Suburban
+Policy Type_Basic
+Policy Type_Comprehensive
+Previous Claims
+Vehicle Age
+Insurance Duration
+Smoking Status_Yes
+Exercise Frequency_Daily
+Exercise Frequency_Monthly
+Exercise Frequency_Rarely
+Property Type_Apartment
+Property Type_Condo

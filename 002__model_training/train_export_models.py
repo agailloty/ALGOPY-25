@@ -35,6 +35,13 @@ df = df.to_dummies(cs.string(), separator="_",  drop_first=True)
 y = df['Premium Amount']
 X = df.drop('Premium Amount')
 
+with open(rootPath / "feature_names.txt", "w") as f:
+    for feature in X.columns:
+        f.write(feature + "\n")
+
+# Remove features names
+X = X.to_numpy()
+
 import sklearn
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import GradientBoostingRegressor

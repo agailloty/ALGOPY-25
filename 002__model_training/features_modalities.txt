@@ -1,17 +1,17 @@
 Age (Float64) 
-Gender (String) : Female,Male
+Gender (String) : Male,Female
 Annual Income (Float64) 
-Marital Status (String) : Single,Married,Divorced
+Marital Status (String) : Married,Single,Divorced
 Number of Dependents (Float64) 
-Education Level (String) : PhD,Master's,High School,Bachelor's
-Occupation (String) : Unemployed,Employed,Self-Employed
+Education Level (String) : High School,Master's,PhD,Bachelor's
+Occupation (String) : Unemployed,Self-Employed,Employed
 Health Score (Float64) 
-Location (String) : Rural,Suburban,Urban
+Location (String) : Rural,Urban,Suburban
 Policy Type (String) : Comprehensive,Premium,Basic
 Previous Claims (Float64) 
 Vehicle Age (Float64) 
 Insurance Duration (Float64) 
-Smoking Status (String) : No,Yes
-Exercise Frequency (String) : Monthly,Daily,Weekly,Rarely
-Property Type (String) : House,Condo,Apartment
+Smoking Status (String) : Yes,No
+Exercise Frequency (String) : Monthly,Daily,Rarely,Weekly
+Property Type (String) : Apartment,House,Condo
 Premium Amount (Float64) 
