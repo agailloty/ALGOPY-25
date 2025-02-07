@@ -16,6 +16,6 @@ st.markdown("### Les données converties pour ML")
 st.text(user_input.convert_to_mlinput())
 
 
-mlinput = np.array([*asdict(user_input.convert_to_mlinput())]).reshape(1, -1)
+mlinput = np.array([*asdict(user_input.convert_to_mlinput()).values()]).reshape(1, -1)
 
 st.markdown(f"Le modèle prédit : {linear_model.predict(mlinput)} ")
