@@ -1,5 +1,6 @@
 import re
 from playwright.sync_api import Playwright, sync_playwright, expect
+from utils import save_html
 
 
 def run(playwright: Playwright) -> None:
@@ -40,7 +41,8 @@ def run(playwright: Playwright) -> None:
     page.get_by_role("textbox", name="Add column").press("Enter")
     page.get_by_role("main").filter(has_text="Columns selected AgeOverall").click()
     page.get_by_role("button", name="Apply").click()
-    for i in range(5):
+    for i in range(10):
+        save_html(page.content())
         page.get_by_role("link", name="Next").click()
 
     # ---------------------
