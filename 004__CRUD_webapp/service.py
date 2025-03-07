@@ -23,6 +23,12 @@ def save_data(transaction : models.Transaction):
         c.execute("INSERT INTO budget (type, categorie, montant) VALUES (?, ?, ?)", (transaction.type, transaction.categorie, transaction.montant))
         conn.commit()
 
+def delete_item(id : int):
+    with sqlite3.connect("budget.db") as conn:
+        c = conn.cursor()
+        c.execute(f"DELETE FROM budget WHERE id = {id}")
+        conn.commit()
+
 # Importer les données depuis un fichier CSV
 def import_csv(file):
     return pd.read_csv(file)

@@ -41,3 +41,25 @@ st.dataframe(df)
 # Calcul du solde total
 solde = df[df["type"] == "Revenu"]["montant"].sum() - df[df["type"] == "Dépense"]["montant"].sum()
 st.metric("💰 Solde total", f"{solde:.2f} €")
+
+
+data = service.load_data()
+
+ids = data["id"]
+categories = data["categorie"]
+montants = data["montant"]
+
+previews = []
+
+for id, categorie, montant in zip(ids, categories, montants):
+    previews.append(f"{id} : {categorie} - {montant}")
+
+
+selected_item = st.selectbox("Transaction à supprimer", previews)
+
+if st.button("Supprimer line sélectionnée"):
+    id = selected_item.split(":")[0]
+    service.delete_item(id)
+    df = service.load_data()
+    data = service.load_data()
+
