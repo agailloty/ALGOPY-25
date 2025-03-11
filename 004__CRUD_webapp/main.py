@@ -5,6 +5,9 @@ import models
 
 
 # Interface utilisateur
+st.set_page_config(
+        page_title="Budget Étudiant"
+)
 st.title("📊 Simulateur de Budget Étudiant")
 st.sidebar.header("Ajouter une transaction")
 
@@ -33,7 +36,7 @@ if uploaded_file is not None:
             service.save_data(new_transaction)
         st.sidebar.success("Transactions importées depuis le CSV !")
 
-# Afficher les données
+
 df = service.load_data()
 st.subheader("📌 Transactions enregistrées")
 st.dataframe(df)
@@ -43,23 +46,25 @@ solde = df[df["type"] == "Revenu"]["montant"].sum() - df[df["type"] == "Dépense
 st.metric("💰 Solde total", f"{solde:.2f} €")
 
 
-data = service.load_data()
+ids = df["id"].tolist()
+ids.insert(0, "--")
 
-ids = data["id"]
-categories = data["categorie"]
-montants = data["montant"]
+def display_option(raw_id : int):
+    if raw_id == "--":
+        return "--"
+    selected_line = df[df["id"] == raw_id]
+    id = selected_line.id.values[0]
+    categorie = selected_line.categorie.values[0]
+    montant = selected_line.montant.values[0]
+    return f'{id} : {categorie} - {montant}'
 
-previews = []
+selected_item = st.selectbox("Transaction à supprimer", options= ids,
+                             format_func=display_option)
 
-for id, categorie, montant in zip(ids, categories, montants):
-    previews.append(f"{id} : {categorie} - {montant}")
+button_disabled = selected_item == "--"
 
-
-selected_item = st.selectbox("Transaction à supprimer", previews)
-
-if st.button("Supprimer line sélectionnée"):
-    id = selected_item.split(":")[0]
+if st.button("Supprimer line sélectionnée", disabled=button_disabled):
+    id = selected_item
     service.delete_item(id)
-    df = service.load_data()
-    data = service.load_data()
+    st.success("Transaction supprimée !")
 
