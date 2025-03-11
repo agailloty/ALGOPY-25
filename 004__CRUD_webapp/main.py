@@ -67,4 +67,5 @@ if st.button("Supprimer line sélectionnée", disabled=button_disabled):
     id = selected_item
     service.delete_item(id)
     st.success("Transaction supprimée !")
+    st.rerun()
 
