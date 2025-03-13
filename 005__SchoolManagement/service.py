@@ -14,9 +14,9 @@ def init_database():
 def create_eleve(eleve : Eleve):
     with sqlite3.connect(DB_NAME) as conn:
         c = conn.cursor()
-        c.execute("INSERT INTO eleves (nom, prenom, date_naissance, adresse, telephone, email, classe) VALUES (?, ?, ?, ?, ?, ?, ?)", 
+        c.execute("INSERT INTO eleves (nom, prenom, date_naissance, adresse, telephone, email, classe, photo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", 
                   (eleve.nom, eleve.prenom, eleve.date_naissance, 
-                   eleve.adresse, eleve.telephone, eleve.email, eleve.classe))
+                   eleve.adresse, eleve.telephone, eleve.email, eleve.classe, eleve.photo))
         conn.commit()
 
 def read_all_eleve() -> list[Eleve]:
@@ -36,7 +36,7 @@ def read_all_eleve() -> list[Eleve]:
                 adresse= line[5],
                 email= line[6],
                 telephone= line[7],
-                photo= None
+                photo= line[8]
             )
             all_eleves.append(eleve)
     return all_eleves

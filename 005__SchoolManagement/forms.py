@@ -18,7 +18,6 @@ def registration_form():
         email = st.text_input("Email")
     
     photo = st.file_uploader("Photo", type=["png", "jpg", "jpeg"])
-
     if st.button("Inscrire"):
         try:
             if nom and prenom and date_naissance and classe:
@@ -37,6 +36,9 @@ def student_display_form(eleve : Eleve):
     col1, col2 = st.columns(2)
 
     with col1:
+
+        if eleve.photo is not None:
+            st.image(eleve.photo, width=120)
         nom = st.text_input("Nom", eleve.nom, disabled=True)
         date_naissance = st.date_input("Date de naissance", eleve.date_naissance, disabled=True)
         classe = st.text_input("Classe", eleve.classe, disabled=True)
