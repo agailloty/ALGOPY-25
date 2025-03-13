@@ -20,13 +20,30 @@ def create_eleve(eleve : Eleve):
         conn.commit()
 
 def read_all_eleve() -> list[Eleve]:
-    with sqlite3.connect("budget.db") as conn:
+    with sqlite3.connect("ecole.db") as conn:
         c = conn.cursor()
         c.execute("SELECT * FROM eleves")
-        c.fetchall()
+        res = c.fetchall()
+
+        all_eleves = []
+
+        for line in res:
+            eleve = Eleve(
+                nom = line[1],
+                prenom= line[2],
+                date_naissance= line[3],
+                classe = line[4],
+                adresse= line[5],
+                email= line[6],
+                telephone= line[7],
+                photo= None
+            )
+            all_eleves.append(eleve)
+    return all_eleves
 
 def read_eleve(id : int) -> Eleve:
     pass
+
 
 def update_eleve(eleve : Eleve):
     pass
