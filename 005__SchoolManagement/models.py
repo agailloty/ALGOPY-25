@@ -10,4 +10,5 @@ class Eleve:
     classe : str
     telephone : str
     email : str
+    photo : bytes
     
