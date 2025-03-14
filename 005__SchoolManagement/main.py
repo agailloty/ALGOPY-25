@@ -20,23 +20,10 @@ with col1:
 
     if eleve_count > 0 and student_to_display is not None:
         leftb, midb, rightb = st.columns(3)
-        previous = leftb.button("Précedent", icon=":material/arrow_back_ios:")
         midb.button("Supprimer" , icon=":material/delete:")
-        next = rightb.button(icon=":material/arrow_forward_ios:", label="Suivant")
 
     if eleve_count > 0 and student_to_display is not None:
-        selected_student_index = all_eleves.index(student_to_display)
-        pos = 0
-        if previous:
-            pos = selected_student_index - 1
-            if pos < 0:
-                pos = 0
-        elif next:
-            pos = selected_student_index + 1
-            if pos > eleve_count - 1:
-                pos = 0
-
-        forms.student_display_form(all_eleves[pos])
+        forms.student_display_form(student_to_display)
 
 with col2:
     if st.button("Inscrire un(e) élève", icon=":material/add:"):

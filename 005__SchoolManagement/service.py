@@ -49,4 +49,7 @@ def update_eleve(eleve : Eleve):
     pass
 
 def delete_eleve(id : int):
-    pass
+    with sqlite3.connect("ecole.db") as conn:
+        c = conn.cursor()
+        c.execute("DELETE FROM eleves where id = {id}")
+        conn.commit()
