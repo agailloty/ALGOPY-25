@@ -29,6 +29,7 @@ def read_all_eleve() -> list[Eleve]:
 
         for line in res:
             eleve = Eleve(
+                id = line[0],
                 nom = line[1],
                 prenom= line[2],
                 date_naissance= line[3],
@@ -46,7 +47,11 @@ def read_eleve(id : int) -> Eleve:
 
 
 def update_eleve(eleve : Eleve):
-    pass
+    with sqlite3.connect("ecole.db") as conn:
+        c = conn.cursor()
+        c.execute("UPDATE eleves SET adresse = ?, telephone = ?, email = ?, classe = ? where id = ?",
+                  (eleve.adresse, eleve.telephone, eleve.email, eleve.classe, eleve.id))
+        conn.commit()
 
 def delete_eleve(id : int):
     with sqlite3.connect("ecole.db") as conn:
